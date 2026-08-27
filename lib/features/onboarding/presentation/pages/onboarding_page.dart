@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cinemax_app/core/app_colors.dart';
 import 'package:cinemax_app/features/onboarding/presentation/widgets/next_bouttom.dart';
 
+import 'package:cinemax_app/features/auth/presentation/pages/auth_choice_page.dart';
+
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
@@ -26,7 +28,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         curve: Curves.easeInOut,
       );
     } else {
-      print("Go to Home");
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const AuthChoicePage()),
+      );
     }
   }
 
