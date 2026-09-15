@@ -1,5 +1,5 @@
 name: cinemax_app
-description: "A new Flutter project."
+description: "Cinemax — a Flutter movie discovery and watchlist app."
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_dotenv: ^5.0.2
+  http: ^1.2.0
   cupertino_icons: ^1.0.8
   firebase_core: ^4.14.0
   firebase_auth: ^6.6.1
@@ -26,9 +28,8 @@ flutter:
 
   assets:
     - assets/images/
-   
+    - api.env
 
-    
 flutter_native_splash:
   color: "#1F1D2B"
   image: "assets/images/splash_screen_logo.png"
