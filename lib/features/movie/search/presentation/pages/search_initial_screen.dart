@@ -38,26 +38,16 @@ class SearchInitialScreen extends StatelessWidget {
                       ),
                       child: Row(
                         children: [
-                          const Icon(
-                            Icons.search_rounded,
-                            color: AppColors.textSecondary,
-                            size: 20,
-                          ),
+                          const Icon(Icons.search_rounded, color: AppColors.textSecondary, size: 20),
                           const SizedBox(width: 12),
                           Expanded(
                             child: TextField(
                               controller: searchController,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 13,
-                              ),
+                              style: const TextStyle(color: Colors.white, fontSize: 13),
                               onSubmitted: onSubmitted,
                               decoration: const InputDecoration(
                                 hintText: 'Type title, categories, years, etc',
-                                hintStyle: TextStyle(
-                                  color: AppColors.textSecondary,
-                                  fontSize: 13,
-                                ),
+                                hintStyle: TextStyle(color: AppColors.textSecondary, fontSize: 13),
                                 border: InputBorder.none,
                                 isDense: true,
                               ),

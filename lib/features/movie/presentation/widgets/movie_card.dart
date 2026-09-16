@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cinemax_app/core/app_colors.dart';
 import 'package:cinemax_app/features/movie/domain/entities/movie.dart';
+import 'package:cinemax_app/features/movie/presentation/cubit/movie_cubit.dart';
+import 'package:cinemax_app/features/movie/presentation/cubit/movie_state.dart';
 import 'package:cinemax_app/features/movie/presentation/widgets/badge_widget.dart';
 
 enum MovieCardVariant { vertical, horizontal }
@@ -51,10 +54,10 @@ class MovieCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Rating Overlay top right
+                // Rating Overlay top left
                 Positioned(
                   top: 8,
-                  right: 8,
+                  left: 8,
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
                     decoration: BoxDecoration(
@@ -78,6 +81,12 @@ class MovieCard extends StatelessWidget {
                     ),
                   ),
                 ),
+                // Favorite Button top right
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: _FavoriteButton(movieId: movie.id),
+                ),
               ],
             ),
             const SizedBox(height: 8),
@@ -96,7 +105,7 @@ class MovieCard extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    '${movie.genre} • ',
+                    movie.genre.isNotEmpty ? '${movie.genre} • ' : '',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
@@ -175,6 +184,12 @@ class MovieCard extends StatelessWidget {
                     ),
                   ),
                 ),
+                // Favorite Button top right
+                Positioned(
+                  top: 6,
+                  right: 6,
+                  child: _FavoriteButton(movieId: movie.id),
+                ),
               ],
             ),
             const SizedBox(width: 14),
@@ -206,7 +221,7 @@ class MovieCard extends StatelessWidget {
                       const Icon(Icons.calendar_today_rounded, color: AppColors.textSecondary, size: 12),
                       const SizedBox(width: 4),
                       Text(
-                        '${movie.year}',
+                        movie.year > 0 ? '${movie.year}' : 'N/A',
                         style: const TextStyle(
                           color: AppColors.textSecondary,
                           fontSize: 11,
@@ -220,7 +235,7 @@ class MovieCard extends StatelessWidget {
                       const Icon(Icons.access_time_rounded, color: AppColors.textSecondary, size: 12),
                       const SizedBox(width: 4),
                       Text(
-                        movie.duration,
+                        movie.duration != '0' ? movie.duration : 'N/A',
                         style: const TextStyle(
                           color: AppColors.textSecondary,
                           fontSize: 11,
@@ -240,7 +255,7 @@ class MovieCard extends StatelessWidget {
                       const Icon(Icons.movie_outlined, color: AppColors.textSecondary, size: 12),
                       const SizedBox(width: 4),
                       Text(
-                        '${movie.genre}  |  ${movie.type}',
+                        movie.genre.isNotEmpty ? '${movie.genre}  |  ${movie.type}' : movie.type,
                         style: const TextStyle(
                           color: AppColors.textSecondary,
                           fontSize: 11,
@@ -254,6 +269,43 @@ class MovieCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _FavoriteButton extends StatelessWidget {
+  final String movieId;
+
+  const _FavoriteButton({required this.movieId});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<MovieCubit, MovieState>(
+      buildWhen: (previous, current) =>
+          previous.wishlist.contains(movieId) !=
+          current.wishlist.contains(movieId),
+      builder: (context, state) {
+        final isFavorite = state.wishlist.contains(movieId);
+        return GestureDetector(
+          onTap: () {
+            context.read<MovieCubit>().toggleWishlist(movieId);
+          },
+          child: Container(
+            padding: const EdgeInsets.all(6),
+            decoration: BoxDecoration(
+              color: AppColors.surface.withValues(alpha: 0.85),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              isFavorite
+                  ? Icons.favorite_rounded
+                  : Icons.favorite_border_rounded,
+              color: isFavorite ? AppColors.heartActive : Colors.white,
+              size: 16,
+            ),
+          ),
+        );
+      },
     );
   }
 }

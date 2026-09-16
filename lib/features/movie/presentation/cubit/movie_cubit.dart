@@ -18,7 +18,6 @@ class MovieCubit extends Cubit<MovieState> {
               ),
             ),
         super(const MovieState()) {
-    // Load initial data (now playing, popular, categories, actors)
     loadInitialData();
   }
 
@@ -28,6 +27,7 @@ class MovieCubit extends Cubit<MovieState> {
       loadPopular(),
       loadCategories(),
       loadActors(),
+      syncWatchlist(),
     ]);
   }
 
@@ -53,12 +53,34 @@ class MovieCubit extends Cubit<MovieState> {
 
   Future<void> loadCategories() async {
     try {
-      final categories = await _repository.getGenres();
-      if (categories.isNotEmpty) {
-        emit(state.copyWith(categories: ['All', ...categories]));
+      final genreMap = await _repository.getGenreMap();
+      if (genreMap.isNotEmpty) {
+        emit(state.copyWith(
+          genreMap: genreMap,
+          categories: ['All', ...genreMap.keys],
+        ));
       }
     } catch (_) {
       // Keep existing categories on failure
+    }
+  }
+
+  Future<void> setSelectedCategory(String category) async {
+    emit(state.copyWith(selectedCategory: category));
+    if (category == 'All') {
+      emit(state.copyWith(categoryMovies: const [], isCategoryLoading: false));
+      return;
+    }
+
+    final genreId = state.genreMap[category];
+    if (genreId != null) {
+      emit(state.copyWith(isCategoryLoading: true));
+      try {
+        final movies = await _repository.getMoviesByGenre(genreId);
+        emit(state.copyWith(categoryMovies: movies, isCategoryLoading: false));
+      } catch (_) {
+        emit(state.copyWith(categoryMovies: const [], isCategoryLoading: false));
+      }
     }
   }
 
@@ -68,6 +90,9 @@ class MovieCubit extends Cubit<MovieState> {
           ? await _repository.searchActors(query)
           : await _repository.getPopularActors();
       emit(state.copyWith(actors: actors));
+      if (actors.isNotEmpty && state.selectedActorId == null) {
+        emit(state.copyWith(selectedActorId: actors.first.id));
+      }
     } catch (_) {
       // Keep existing actors on failure
     }
@@ -95,22 +120,40 @@ class MovieCubit extends Cubit<MovieState> {
     }
   }
 
-  // UI actions
-  void toggleWishlist(String movieId) {
+  // Sync wishlist from TMDB account if credentials exist
+  Future<void> syncWatchlist() async {
+    try {
+      final watchlistMovies = await _repository.getWatchlistMovies();
+      if (watchlistMovies.isNotEmpty) {
+        final ids = watchlistMovies.map((m) => m.id).toSet();
+        emit(state.copyWith(wishlist: {...state.wishlist, ...ids}));
+      }
+    } catch (_) {}
+  }
+
+  // Wishlist toggle with optional TMDB account write
+  Future<void> toggleWishlist(String movieId) async {
     final updated = Set<String>.from(state.wishlist);
-    if (updated.contains(movieId)) {
-      updated.remove(movieId);
-    } else {
+    final isAdding = !updated.contains(movieId);
+    if (isAdding) {
       updated.add(movieId);
+    } else {
+      updated.remove(movieId);
     }
     emit(state.copyWith(wishlist: updated));
+
+    try {
+      if (isAdding) {
+        await _repository.addToWatchlist(mediaId: movieId, mediaType: 'movie');
+      } else {
+        await _repository.removeFromWatchlist(mediaId: movieId, mediaType: 'movie');
+      }
+    } catch (_) {}
   }
 
   void clearWishlist() => emit(state.copyWith(wishlist: <String>{}));
 
   void setSearchQuery(String query) => emit(state.copyWith(searchQuery: query));
-
-  void setSelectedCategory(String category) => emit(state.copyWith(selectedCategory: category));
 
   void setSelectedSearchTab(int index) => emit(state.copyWith(selectedSearchTab: index));
 

@@ -5,14 +5,14 @@ import 'package:cinemax_app/features/movie/domain/entities/movie.dart';
 import 'package:cinemax_app/features/movie/presentation/cubit/movie_cubit.dart';
 import 'package:cinemax_app/features/movie/presentation/cubit/movie_state.dart';
 import 'package:cinemax_app/features/movie/presentation/pages/home_screen.dart';
-import 'package:cinemax_app/features/movie/presentation/pages/most_popular_screen.dart';
-import 'package:cinemax_app/features/movie/presentation/pages/movie_detail_screen.dart';
-import 'package:cinemax_app/features/movie/presentation/pages/search_initial_screen.dart';
-import 'package:cinemax_app/features/movie/presentation/pages/search_results_screen.dart';
-import 'package:cinemax_app/features/movie/presentation/pages/wishlist_screen.dart';
+import 'package:cinemax_app/features/movie/popular/presentation/pages/most_popular_screen.dart';
+import 'package:cinemax_app/features/movie/detail/presentation/pages/movie_detail_screen.dart';
+import 'package:cinemax_app/features/movie/search/presentation/pages/search_initial_screen.dart';
+import 'package:cinemax_app/features/movie/search/presentation/pages/search_results_screen.dart';
+import 'package:cinemax_app/features/movie/wishlist/presentation/pages/wishlist_screen.dart';
 import 'package:cinemax_app/features/movie/presentation/widgets/custom_bottom_nav_bar.dart';
 
-import 'package:cinemax_app/features/movie/presentation/pages/profile_stack.dart';
+import 'package:cinemax_app/features/profile/presentation/pages/profile_stack.dart';
 
 enum _ActiveSubScreen { none, detail, mostPopular }
 

@@ -47,25 +47,30 @@ class _HomeScreenState extends State<HomeScreen> {
             ? heroMovies[_heroIndex % heroMovies.length]
             : null;
 
-        final displayPopular = state.popular.isNotEmpty ? state.popular : state.nowPlaying;
+        final isCategoryFiltered = state.selectedCategory != 'All';
+        final displayMovies = isCategoryFiltered
+            ? state.categoryMovies
+            : (state.popular.isNotEmpty ? state.popular : state.nowPlaying);
 
         return Scaffold(
           backgroundColor: AppColors.background,
           body: SafeArea(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const CustomStatusBar(),
-                  const SizedBox(height: 12),
-                  // Top Header Bar
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // -----------------------------------------------------------
+                // FIXED HEADER SECTION: Status Bar, Greeting, and Search Bar
+                // -----------------------------------------------------------
+                const CustomStatusBar(),
+                const SizedBox(height: 12),
+                // Top Header Bar
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Row(
                           children: [
                             // Avatar
                             const CircleAvatar(
@@ -75,141 +80,27 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             const SizedBox(width: 12),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Hello, ${state.userName.isNotEmpty ? state.userName : 'Smith'}',
-                                  style: const TextStyle(
-                                    color: AppColors.textPrimary,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(height: 2),
-                                const Text(
-                                  "Let's stream your favorite movie",
-                                  style: TextStyle(
-                                    color: AppColors.textSecondary,
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        // Wishlist / Heart Icon Button
-                        IconButton(
-                          icon: const Icon(Icons.favorite_rounded, color: AppColors.heartActive, size: 24),
-                          onPressed: () {
-                            context.read<MovieCubit>().setActiveBottomTab(2);
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  // Tappable Search Bar
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: GestureDetector(
-                      onTap: widget.onNavigateToSearch,
-                      child: Container(
-                        height: 48,
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        decoration: BoxDecoration(
-                          color: AppColors.searchBarBg,
-                          borderRadius: BorderRadius.circular(24),
-                        ),
-                        child: Row(
-                          children: const [
-                            Icon(Icons.search_rounded, color: AppColors.textSecondary, size: 20),
-                            SizedBox(width: 12),
                             Expanded(
-                              child: Text(
-                                'Search a title...',
-                                style: TextStyle(
-                                  color: AppColors.textSecondary,
-                                  fontSize: 13,
-                                ),
-                              ),
-                            ),
-                            Icon(Icons.tune_rounded, color: AppColors.textSecondary, size: 20),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-
-                  // Hero Banner Carousel
-                  if (heroMovie != null) ...[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: GestureDetector(
-                        onTap: () => widget.onSelectMovie(heroMovie),
-                        child: Stack(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: heroMovie.backdropUrl.isNotEmpty
-                                  ? Image.network(
-                                      heroMovie.backdropUrl,
-                                      height: 170,
-                                      width: double.infinity,
-                                      fit: BoxFit.cover,
-                                      errorBuilder: (context, error, stackTrace) => Container(
-                                        height: 170,
-                                        color: AppColors.card,
-                                        child: const Center(
-                                          child: Icon(Icons.movie, color: AppColors.textSecondary, size: 48),
-                                        ),
-                                      ),
-                                    )
-                                  : Container(
-                                      height: 170,
-                                      color: AppColors.card,
-                                      child: const Center(
-                                        child: Icon(Icons.movie, color: AppColors.textSecondary, size: 48),
-                                      ),
-                                    ),
-                            ),
-                            Container(
-                              height: 170,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Colors.black.withValues(alpha: 0.8),
-                                    Colors.transparent,
-                                  ],
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter,
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 16,
-                              left: 16,
-                              right: 16,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    heroMovie.title,
+                                    'Hello, ${state.userName.isNotEmpty ? state.userName : 'Smith'}',
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(
-                                      color: Colors.white,
+                                      color: AppColors.textPrimary,
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    heroMovie.year > 0 ? 'Released in ${heroMovie.year}' : 'Featured Movie',
+                                  const SizedBox(height: 2),
+                                  const Text(
+                                    "Let's stream your favorite movie",
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
-                                      color: Colors.white.withValues(alpha: 0.8),
+                                      color: AppColors.textSecondary,
                                       fontSize: 11,
                                     ),
                                   ),
@@ -219,145 +110,297 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    // Carousel Pagination Dots
-                    if (heroMovies.length > 1)
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(
-                          heroMovies.length,
-                          (index) => GestureDetector(
-                            onTap: () => setState(() => _heroIndex = index),
-                            child: AnimatedContainer(
-                              duration: const Duration(milliseconds: 300),
-                              margin: const EdgeInsets.symmetric(horizontal: 3),
-                              height: 6,
-                              width: (_heroIndex % heroMovies.length) == index ? 20 : 6,
-                              decoration: BoxDecoration(
-                                color: (_heroIndex % heroMovies.length) == index
-                                    ? AppColors.secondary
-                                    : AppColors.textTertiary,
-                                borderRadius: BorderRadius.circular(3),
+                      // Wishlist / Heart Icon Button
+                      IconButton(
+                        icon: const Icon(Icons.favorite_rounded, color: AppColors.heartActive, size: 24),
+                        onPressed: () {
+                          context.read<MovieCubit>().setActiveBottomTab(2);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                // Tappable Search Bar
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: GestureDetector(
+                    onTap: widget.onNavigateToSearch,
+                    child: Container(
+                      height: 48,
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      decoration: BoxDecoration(
+                        color: AppColors.searchBarBg,
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                      child: Row(
+                        children: const [
+                          Icon(Icons.search_rounded, color: AppColors.textSecondary, size: 20),
+                          SizedBox(width: 12),
+                          Expanded(
+                            child: Text(
+                              'Search a title...',
+                              style: TextStyle(
+                                color: AppColors.textSecondary,
+                                fontSize: 13,
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                  ],
-
-                  const SizedBox(height: 20),
-                  // Categories Section Header
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Text(
-                      'Categories',
-                      style: TextStyle(
-                        color: AppColors.textPrimary,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                          Icon(Icons.tune_rounded, color: AppColors.textSecondary, size: 20),
+                        ],
                       ),
                     ),
                   ),
-                  const SizedBox(height: 12),
-                  // Filter Chips Row
-                  if (state.categories.isNotEmpty)
-                    SizedBox(
-                      height: 36,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        physics: const BouncingScrollPhysics(),
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        itemCount: state.categories.length,
-                        itemBuilder: (context, index) {
-                          final cat = state.categories[index];
-                          final isSelected = cat == state.selectedCategory;
+                ),
+                const SizedBox(height: 16),
 
-                          return GestureDetector(
-                            onTap: () {
-                              context.read<MovieCubit>().setSelectedCategory(cat);
-                            },
-                            child: Container(
-                              margin: const EdgeInsets.only(right: 12),
-                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                              decoration: BoxDecoration(
-                                color: isSelected ? AppColors.card : Colors.transparent,
-                                borderRadius: BorderRadius.circular(18),
-                              ),
-                              child: Text(
-                                cat,
-                                style: TextStyle(
-                                  color: isSelected ? AppColors.secondary : AppColors.textSecondary,
-                                  fontSize: 13,
-                                  fontWeight: isSelected ? FontWeight.bold : FontWeight.w400,
+                // -----------------------------------------------------------
+                // SCROLLABLE BODY SECTION: Hero Banner, Categories, and Movies
+                // -----------------------------------------------------------
+                Expanded(
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Hero Banner Carousel
+                        if (heroMovie != null) ...[
+                          SizedBox(
+                            height: 170,
+                            child: PageView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              itemCount: heroMovies.length,
+                              onPageChanged: (index) {
+                                setState(() => _heroIndex = index);
+                              },
+                              itemBuilder: (context, index) {
+                                final currentHero = heroMovies[index];
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                                  child: GestureDetector(
+                                    onTap: () => widget.onSelectMovie(currentHero),
+                                    child: Stack(
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(20),
+                                          child: currentHero.backdropUrl.isNotEmpty
+                                              ? Image.network(
+                                                  currentHero.backdropUrl,
+                                                  height: 170,
+                                                  width: double.infinity,
+                                                  fit: BoxFit.cover,
+                                                  errorBuilder: (context, error, stackTrace) => Container(
+                                                    height: 170,
+                                                    width: double.infinity,
+                                                    color: AppColors.card,
+                                                    child: const Center(
+                                                      child: Icon(Icons.movie, color: AppColors.textSecondary, size: 48),
+                                                    ),
+                                                  ),
+                                                )
+                                              : Container(
+                                                  height: 170,
+                                                  width: double.infinity,
+                                                  color: AppColors.card,
+                                                  child: const Center(
+                                                    child: Icon(Icons.movie, color: AppColors.textSecondary, size: 48),
+                                                  ),
+                                                ),
+                                        ),
+                                        Positioned.fill(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(20),
+                                              gradient: LinearGradient(
+                                                colors: [
+                                                  Colors.black.withValues(alpha: 0.8),
+                                                  Colors.transparent,
+                                                ],
+                                                begin: Alignment.bottomCenter,
+                                                end: Alignment.topCenter,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          bottom: 16,
+                                          left: 16,
+                                          right: 16,
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                currentHero.title,
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 4),
+                                              Text(
+                                                currentHero.year > 0 ? 'Released in ${currentHero.year}' : 'Featured Movie',
+                                                style: TextStyle(
+                                                  color: Colors.white.withValues(alpha: 0.8),
+                                                  fontSize: 11,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          // Carousel Pagination Dots
+                          if (heroMovies.length > 1)
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: List.generate(
+                                heroMovies.length,
+                                (index) => GestureDetector(
+                                  onTap: () => setState(() => _heroIndex = index),
+                                  child: AnimatedContainer(
+                                    duration: const Duration(milliseconds: 300),
+                                    margin: const EdgeInsets.symmetric(horizontal: 3),
+                                    height: 6,
+                                    width: (_heroIndex % heroMovies.length) == index ? 20 : 6,
+                                    decoration: BoxDecoration(
+                                      color: (_heroIndex % heroMovies.length) == index
+                                          ? AppColors.secondary
+                                          : AppColors.textTertiary,
+                                      borderRadius: BorderRadius.circular(3),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                          );
-                        },
-                      ),
-                    ),
-                  const SizedBox(height: 24),
-                  // Most Popular Header
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Most popular',
-                          style: TextStyle(
-                            color: AppColors.textPrimary,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: widget.onNavigateToMostPopular,
-                          child: const Text(
-                            'See All',
+                        ],
+
+                        const SizedBox(height: 20),
+                        // Categories Section Header
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Text(
+                            'Categories',
                             style: TextStyle(
-                              color: AppColors.secondary,
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
+                              color: AppColors.textPrimary,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 14),
-                  // Horizontally Scrollable Movie Cards Row
-                  SizedBox(
-                    height: 240,
-                    child: displayPopular.isEmpty
-                        ? const Center(
-                            child: Text(
-                              'No movies found',
-                              style: TextStyle(color: AppColors.textSecondary),
-                            ),
-                          )
-                        : ListView.builder(
+                        const SizedBox(height: 12),
+                        // Horizontally Scrollable Category Filter Chips
+                        if (state.categories.isNotEmpty)
+                          SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             physics: const BouncingScrollPhysics(),
                             padding: const EdgeInsets.symmetric(horizontal: 20),
-                            itemCount: displayPopular.length,
-                            itemBuilder: (context, index) {
-                              final movie = displayPopular[index];
-                              return Padding(
-                                padding: const EdgeInsets.only(right: 14),
-                                child: MovieCard(
-                                  movie: movie,
-                                  variant: MovieCardVariant.vertical,
-                                  onTap: () => widget.onSelectMovie(movie),
-                                ),
-                              );
-                            },
+                            child: Row(
+                              children: state.categories.map((cat) {
+                                final isSelected = cat == state.selectedCategory;
+
+                                return GestureDetector(
+                                  onTap: () {
+                                    context.read<MovieCubit>().setSelectedCategory(cat);
+                                  },
+                                  child: Container(
+                                    margin: const EdgeInsets.only(right: 12),
+                                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                                    decoration: BoxDecoration(
+                                      color: isSelected ? AppColors.card : Colors.transparent,
+                                      borderRadius: BorderRadius.circular(18),
+                                    ),
+                                    child: Text(
+                                      cat,
+                                      style: TextStyle(
+                                        color: isSelected ? AppColors.secondary : AppColors.textSecondary,
+                                        fontSize: 13,
+                                        fontWeight: isSelected ? FontWeight.bold : FontWeight.w400,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
+                            ),
                           ),
+
+                        const SizedBox(height: 24),
+                        // Section Header (Most Popular or Category)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                isCategoryFiltered ? '${state.selectedCategory} Movies' : 'Most popular',
+                                style: const TextStyle(
+                                  color: AppColors.textPrimary,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              if (!isCategoryFiltered)
+                                GestureDetector(
+                                  onTap: widget.onNavigateToMostPopular,
+                                  child: const Text(
+                                    'See All',
+                                    style: TextStyle(
+                                      color: AppColors.secondary,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 14),
+                        // Horizontally Scrollable Movie Cards Row
+                        SizedBox(
+                          height: 240,
+                          child: state.isCategoryLoading
+                              ? const Center(
+                                  child: CircularProgressIndicator(color: AppColors.secondary),
+                                )
+                              : displayMovies.isEmpty
+                                  ? const Center(
+                                      child: Text(
+                                        'No movies found',
+                                        style: TextStyle(color: AppColors.textSecondary),
+                                      ),
+                                    )
+                                  : ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      physics: const BouncingScrollPhysics(),
+                                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                                      itemCount: displayMovies.length,
+                                      itemBuilder: (context, index) {
+                                        final movie = displayMovies[index];
+                                        return Padding(
+                                          padding: const EdgeInsets.only(right: 14),
+                                          child: MovieCard(
+                                            movie: movie,
+                                            variant: MovieCardVariant.vertical,
+                                            onTap: () => widget.onSelectMovie(movie),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                        ),
+                        const SizedBox(height: 24),
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 20),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         );

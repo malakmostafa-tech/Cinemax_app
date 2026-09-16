@@ -6,7 +6,7 @@ import 'package:cinemax_app/features/auth/presentation/cubit/auth_state.dart';
 import 'package:cinemax_app/features/auth/presentation/widgets/custom_primary_button.dart';
 import 'package:cinemax_app/features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:cinemax_app/features/auth/presentation/pages/reset_password_page.dart';
-import 'package:cinemax_app/features/home/presentation/pages/home_page.dart';
+import 'package:cinemax_app/features/movie/presentation/pages/main_wrapper_screen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
             );
           } else if (state is AuthAuthenticated || state is AuthSuccess) {
             Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => const HomePage()),
+              MaterialPageRoute(builder: (context) => const MainWrapperScreen()),
               (route) => false,
             );
           }

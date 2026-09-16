@@ -1,4 +1,4 @@
-﻿import 'package:cinemax_app/services/tmdb_service.dart';
+import 'package:cinemax_app/services/tmdb_service.dart';
 import 'package:cinemax_app/features/movie/domain/entities/movie.dart';
 import 'package:cinemax_app/features/movie/domain/entities/actor.dart';
 
@@ -10,6 +10,8 @@ class MovieRepository {
   Future<List<Movie>> getNowPlaying() => _service.fetchNowPlaying();
   Future<List<Movie>> getPopular() => _service.fetchPopular();
   Future<List<String>> getGenres() => _service.fetchGenres();
+  Future<Map<String, int>> getGenreMap() => _service.fetchGenreMap();
+  Future<List<Movie>> getMoviesByGenre(int genreId) => _service.fetchMoviesByGenre(genreId);
   Future<List<Movie>> searchMovies(String query) => _service.searchMovies(query);
   Future<Movie> getMovieDetail(String id) => _service.fetchMovieDetail(id);
 

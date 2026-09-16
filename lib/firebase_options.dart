@@ -45,6 +45,7 @@ class DefaultFirebaseOptions {
     appId: '1:9580367963:web:4cfef350f58b50a930af7e',
     messagingSenderId: '9580367963',
     projectId: 'cinemax-app-8ea71',
+
     authDomain: 'cinemax-app-8ea71.firebaseapp.com',
     storageBucket: 'cinemax-app-8ea71.firebasestorage.app',
     measurementId: 'G-9N653H1KM4',
