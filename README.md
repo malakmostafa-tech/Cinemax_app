@@ -21,15 +21,9 @@ https://github.com/user-attachments/assets/PASTE_YOUR_VIDEO_LINK_HERE
 
 ## 📸 Screenshots
 
-<table align="center">
-  <tr>
-    <td align="center"><img src="<img width="720" height="1600" alt="WhatsApp Image 2026-09-19 at 12 38 47 AM" src="https://github.com/user-attachments/assets/a5754778-a6ac-4d1a-a9da-ce73a0639c6f" />
-" width="200" alt="Home" /><br/><sub><b>Home</b></sub></td>
-    <td align="center"><img src="screenshots/details.jpg" width="200" alt="Movie details" /><br/><sub><b>Details</b></sub></td>
-    <td align="center"><img src="screenshots/chat.jpg" width="200" alt="Cinemax AI" /><br/><sub><b>Cinemax AI</b></sub></td>
-    <td align="center"><img src="screenshots/profile.jpg" width="200" alt="Profile" /><br/><sub><b>Profile</b></sub></td>
-  </tr>
-</table>
+<img width="720" height="1600" alt="WhatsApp Image 2026-09-19 at 12 39 01 AM" src="https://github.com/user-attachments/assets/e0b7bcd9-b830-4195-a305-25510dc11dd7" />
+<img width="720" height="1600" alt="WhatsApp Image 2026-09-19 at 12 38 47 AM" src="https://github.com/user-attachments/assets/ad1c7937-a68e-4de7-977f-9a1b988f7c4b" />
+<img width="720" height="1600" alt="WhatsApp Image 2026-09-19 at 12 38 47 AM" src="https://github.com/user-attachments/assets/e5e0b7ea-f989-49a7-9866-8d40cc2b3df5" />
 
 ---
 
