@@ -23,7 +23,8 @@ https://github.com/user-attachments/assets/PASTE_YOUR_VIDEO_LINK_HERE
 
 <table align="center">
   <tr>
-    <td align="center"><img src="screenshots/home.jpg" width="200" alt="Home" /><br/><sub><b>Home</b></sub></td>
+    <td align="center"><img src="<img width="720" height="1600" alt="WhatsApp Image 2026-09-19 at 12 38 47 AM" src="https://github.com/user-attachments/assets/a5754778-a6ac-4d1a-a9da-ce73a0639c6f" />
+" width="200" alt="Home" /><br/><sub><b>Home</b></sub></td>
     <td align="center"><img src="screenshots/details.jpg" width="200" alt="Movie details" /><br/><sub><b>Details</b></sub></td>
     <td align="center"><img src="screenshots/chat.jpg" width="200" alt="Cinemax AI" /><br/><sub><b>Cinemax AI</b></sub></td>
     <td align="center"><img src="screenshots/profile.jpg" width="200" alt="Profile" /><br/><sub><b>Profile</b></sub></td>
