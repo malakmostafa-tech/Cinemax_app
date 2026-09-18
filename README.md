@@ -1,12 +1,13 @@
 <div align="center">
 
-# 🎬 Cinemax
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Cinemax&fontSize=56&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Movies%20%2B%20AI%20Assistant&descAlignY=58&descSize=18" width="100%" alt="Cinemax" />
 
 **A modern movie app with a built-in AI chat assistant powered by Google Gemini.**
 
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
 ![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
 ![Gemini](https://img.shields.io/badge/Gemini_API-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 
 </div>
 
@@ -18,23 +19,31 @@ https://github.com/user-attachments/assets/PASTE_YOUR_VIDEO_LINK_HERE
 
 ---
 
-## ✨ Features
+## 📸 Screenshots
 
-<!-- Edit this list to match what your app really does -->
-- 🤖 AI chat assistant powered by Google Gemini
-- 🎥 Movie browsing and details
-- 🎨 Clean, modern UI
-- ⚠️ Friendly error handling (no internet, invalid key, rate limits)
+<table align="center">
+  <tr>
+    <td align="center"><img src="screenshots/home.jpg" width="200" alt="Home" /><br/><sub><b>Home</b></sub></td>
+    <td align="center"><img src="screenshots/details.jpg" width="200" alt="Movie details" /><br/><sub><b>Details</b></sub></td>
+    <td align="center"><img src="screenshots/chat.jpg" width="200" alt="Cinemax AI" /><br/><sub><b>Cinemax AI</b></sub></td>
+    <td align="center"><img src="screenshots/profile.jpg" width="200" alt="Profile" /><br/><sub><b>Profile</b></sub></td>
+  </tr>
+</table>
 
 ---
 
-## 📸 Screenshots
+## ✨ Features
 
-<p align="center">
-  <img src="assets/screenshots/home.png" width="230" alt="Home" />
-  <img src="assets/screenshots/details.png" width="230" alt="Details" />
-  <img src="assets/screenshots/chat.png" width="230" alt="AI Chat" />
-</p>
+- 🤖 **Cinemax AI**: chat assistant powered by Gemini, with suggested prompts in English and Arabic
+- 🏠 Home with a featured carousel, category filters and a "Most popular" list
+- 🔍 Search with filters
+- 🎥 Movie details: rating, duration, genre, storyline, and cast & crew
+- ❤️ Favorites and a saved list
+- 👤 Profile and settings (account, notifications, language, country)
+- 🌙 Modern dark UI
+- ⚠️ Friendly error messages for no internet, invalid API key and rate limits
+
+<!-- Delete any feature above that isn't working yet -->
 
 ---
 
@@ -47,7 +56,7 @@ https://github.com/user-attachments/assets/PASTE_YOUR_VIDEO_LINK_HERE
 
 ## 🚀 Getting Started
 
-**Prerequisites:** Flutter SDK and a Gemini API key from [Google AI Studio](https://aistudio.google.com).
+**Prerequisites:** [Flutter SDK](https://docs.flutter.dev/get-started/install) and a free Gemini API key from [Google AI Studio](https://aistudio.google.com).
 
 ```bash
 # 1. Clone the repo
@@ -59,17 +68,46 @@ flutter pub get
 
 # 3. Create your env file from the example
 cp api.env.example api.env
-# then open api.env and paste your own key
+# open api.env and paste your own key
 
-# 4. Run
+# 4. Run the app
 flutter run
 ```
 
-> 🔐 Never commit `api.env`. It is listed in `.gitignore`.
+Your `api.env` should look like this:
+
+```
+GEMINI_API_KEY=your_key_here
+```
+
+> 🔐 `api.env` is listed in `.gitignore` and must never be committed.
 
 ---
 
-## 👩‍💻 Author
+## 🤖 About Cinemax AI
+
+Ask it for movie recommendations, plot breakdowns, actors, genres, or what to watch tonight. It understands both English and Arabic.
+
+---
+
+## 🙏 Credits
+
+<!-- Keep this only if your movie data comes from TMDB, and delete it otherwise -->
+This product uses the TMDB API but is not endorsed or certified by TMDB.
+
+---
+
+<div align="center">
+
+### 👩‍💻 Author
 
 **Malak Mostafa**
-[LinkedIn](https://www.linkedin.com/in/malk-mostafa) · [GitHub](https://github.com/malakmostafa-tech)
+
+<a href="https://www.linkedin.com/in/malk-mostafa"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+<a href="https://github.com/malakmostafa-tech"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /></a>
+
+⭐ _If you like this project, give it a star!_
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" width="100%" alt="footer" />
+
+</div>
