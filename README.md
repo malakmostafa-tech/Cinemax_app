@@ -13,21 +13,30 @@
 
 ---
 
+## 📽️ Demo
+
+<div align="center">
+
+<a href="https://drive.google.com/drive/folders/1R3Z9EiGBJ_DUD33R_IeB1sO3f1YQoxdY?usp=drive_link"><img src="https://img.shields.io/badge/Watch_Demo-FF7A00?style=for-the-badge&logo=googledrive&logoColor=white" alt="Watch Demo" /></a>
+
+</div>
+
+---
+
 ## 📸 Screenshots
 
 <table align="center">
   <tr>
-       <td align="center"><img src="https://github.com/user-attachments/assets/7c939cde-7470-44ce-a144-d3bbaa0cb949" width="150" alt="Home" /></td>
-    <td align="center"><img src="https://github.com/user-attachments/assets/e0b7bcd9-b830-4195-a305-25510dc11dd7" width="150" alt="Profile" /></td>
-    <td align="center"><img src="https://github.com/user-attachments/assets/ad1c7937-a68e-4de7-977f-9a1b988f7c4b" width="150" alt="Details" /></td>
-    <td align="center"><img src="https://github.com/user-attachments/assets/e5e0b7ea-f989-49a7-9866-8d40cc2b3df5" width="150" alt="Duplicate" /></td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/e5e0b7ea-f989-49a7-9866-8d40cc2b3df5" width="200" alt="Home" /></td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/ad1c7937-a68e-4de7-977f-9a1b988f7c4b" width="200" alt="Movie Details" /></td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/7c939cde-7470-44ce-a144-d3bbaa0cb949" width="200" alt="Cinemax AI Chat" /></td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/e0b7bcd9-b830-4195-a305-25510dc11dd7" width="200" alt="Profile" /></td>
   </tr>
   <tr>
-    <td align="center"><b>🤖 AI Chat</b></td>
     <td align="center"><b>🏠 Home</b></td>
-    <td align="center"><b>👤 Profile</b></td>
     <td align="center"><b>🎥 Details</b></td>
-    <td align="center"><b>DELETE ME</b></td>
+    <td align="center"><b>🤖 AI Chat</b></td>
+    <td align="center"><b>👤 Profile</b></td>
   </tr>
 </table>
 
