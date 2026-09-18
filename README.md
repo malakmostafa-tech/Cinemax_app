@@ -15,24 +15,33 @@
 
 ## 📸 Screenshots
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/e0b7bcd9-b830-4195-a305-25510dc11dd7" width="180" alt="Screenshot 1" />
-  <img src="https://github.com/user-attachments/assets/ad1c7937-a68e-4de7-977f-9a1b988f7c4b" width="180" alt="Screenshot 2" />
-  <img src="https://github.com/user-attachments/assets/e5e0b7ea-f989-49a7-9866-8d40cc2b3df5" width="180" alt="Screenshot 3" />
-  <img src="https://github.com/user-attachments/assets/0ebeb26d-b644-4066-b34f-9b613f709629" width="180" alt="Screenshot 4" />
-  <img src="https://github.com/user-attachments/assets/7c939cde-7470-44ce-a144-d3bbaa0cb949" width="180" alt="Screenshot 5" />
-</p>
+<table align="center">
+  <tr>
+    <td align="center"><img src="https://github.com/user-attachments/assets/0ebeb26d-b644-4066-b34f-9b613f709629" width="150" alt="AI Chat" /></td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/7c939cde-7470-44ce-a144-d3bbaa0cb949" width="150" alt="Home" /></td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/e0b7bcd9-b830-4195-a305-25510dc11dd7" width="150" alt="Profile" /></td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/ad1c7937-a68e-4de7-977f-9a1b988f7c4b" width="150" alt="Details" /></td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/e5e0b7ea-f989-49a7-9866-8d40cc2b3df5" width="150" alt="Duplicate" /></td>
+  </tr>
+  <tr>
+    <td align="center"><b>🤖 AI Chat</b></td>
+    <td align="center"><b>🏠 Home</b></td>
+    <td align="center"><b>👤 Profile</b></td>
+    <td align="center"><b>🎥 Details</b></td>
+    <td align="center"><b>DELETE ME</b></td>
+  </tr>
+</table>
 
 ---
 
 ## ✨ Features
 
 - 🤖 **Cinemax AI**: chat assistant powered by Gemini, with suggested prompts in English and Arabic
-- 🏠 Home with a featured carousel, category filters and a "Most popular" list
-- 🔍 Search with filters
-- 🎥 Movie details: rating, duration, genre, storyline, and cast & crew
-- ❤️ Favorites and a saved list
-- 👤 Profile and settings (account, notifications, language, country)
+- 🏠 **Home**: featured carousel, category filters and a "Most popular" list
+- 🔍 **Search** with filters
+- 🎥 **Movie details**: rating, duration, genre, storyline, and cast & crew
+- ❤️ **Favorites** and a saved list
+- 👤 **Profile** and settings (account, notifications, language, country)
 - 🌙 Modern dark UI
 - ⚠️ Friendly error messages for no internet, invalid API key and rate limits
 
