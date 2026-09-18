@@ -13,17 +13,15 @@
 
 ---
 
-## 📽️ Demo
-
-https://github.com/user-attachments/assets/PASTE_YOUR_VIDEO_LINK_HERE
-
----
-
 ## 📸 Screenshots
 
-<img width="720" height="1600" alt="WhatsApp Image 2026-09-19 at 12 39 01 AM" src="https://github.com/user-attachments/assets/e0b7bcd9-b830-4195-a305-25510dc11dd7" />
-<img width="720" height="1600" alt="WhatsApp Image 2026-09-19 at 12 38 47 AM" src="https://github.com/user-attachments/assets/ad1c7937-a68e-4de7-977f-9a1b988f7c4b" />
-<img width="720" height="1600" alt="WhatsApp Image 2026-09-19 at 12 38 47 AM" src="https://github.com/user-attachments/assets/e5e0b7ea-f989-49a7-9866-8d40cc2b3df5" />
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/e0b7bcd9-b830-4195-a305-25510dc11dd7" width="180" alt="Screenshot 1" />
+  <img src="https://github.com/user-attachments/assets/ad1c7937-a68e-4de7-977f-9a1b988f7c4b" width="180" alt="Screenshot 2" />
+  <img src="https://github.com/user-attachments/assets/e5e0b7ea-f989-49a7-9866-8d40cc2b3df5" width="180" alt="Screenshot 3" />
+  <img src="https://github.com/user-attachments/assets/0ebeb26d-b644-4066-b34f-9b613f709629" width="180" alt="Screenshot 4" />
+  <img src="https://github.com/user-attachments/assets/7c939cde-7470-44ce-a144-d3bbaa0cb949" width="180" alt="Screenshot 5" />
+</p>
 
 ---
 
@@ -37,8 +35,6 @@ https://github.com/user-attachments/assets/PASTE_YOUR_VIDEO_LINK_HERE
 - 👤 Profile and settings (account, notifications, language, country)
 - 🌙 Modern dark UI
 - ⚠️ Friendly error messages for no internet, invalid API key and rate limits
-
-<!-- Delete any feature above that isn't working yet -->
 
 ---
 
@@ -87,7 +83,6 @@ Ask it for movie recommendations, plot breakdowns, actors, genres, or what to wa
 
 ## 🙏 Credits
 
-<!-- Keep this only if your movie data comes from TMDB, and delete it otherwise -->
 This product uses the TMDB API but is not endorsed or certified by TMDB.
 
 ---
