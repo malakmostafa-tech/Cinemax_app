@@ -17,8 +17,7 @@
 
 <table align="center">
   <tr>
-    <td align="center"><img src="https://github.com/user-attachments/assets/0ebeb26d-b644-4066-b34f-9b613f709629" width="150" alt="AI Chat" /></td>
-    <td align="center"><img src="https://github.com/user-attachments/assets/7c939cde-7470-44ce-a144-d3bbaa0cb949" width="150" alt="Home" /></td>
+       <td align="center"><img src="https://github.com/user-attachments/assets/7c939cde-7470-44ce-a144-d3bbaa0cb949" width="150" alt="Home" /></td>
     <td align="center"><img src="https://github.com/user-attachments/assets/e0b7bcd9-b830-4195-a305-25510dc11dd7" width="150" alt="Profile" /></td>
     <td align="center"><img src="https://github.com/user-attachments/assets/ad1c7937-a68e-4de7-977f-9a1b988f7c4b" width="150" alt="Details" /></td>
     <td align="center"><img src="https://github.com/user-attachments/assets/e5e0b7ea-f989-49a7-9866-8d40cc2b3df5" width="150" alt="Duplicate" /></td>
