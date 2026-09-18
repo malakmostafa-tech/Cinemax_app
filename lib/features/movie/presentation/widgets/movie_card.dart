@@ -230,35 +230,44 @@ class MovieCard extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 6),
-                  Row(
-                    children: [
-                      const Icon(Icons.access_time_rounded, color: AppColors.textSecondary, size: 12),
-                      const SizedBox(width: 4),
-                      Text(
-                        movie.duration != '0' ? movie.duration : 'N/A',
-                        style: const TextStyle(
-                          color: AppColors.textSecondary,
-                          fontSize: 11,
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.centerLeft,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.access_time_rounded, color: AppColors.textSecondary, size: 12),
+                        const SizedBox(width: 4),
+                        Text(
+                          movie.duration != '0' ? movie.duration : 'N/A',
+                          style: const TextStyle(
+                            color: AppColors.textSecondary,
+                            fontSize: 11,
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 8),
-                      BadgeWidget(
-                        text: movie.ageRating,
-                        isOrange: false,
-                        isOutline: true,
-                      ),
-                    ],
+                        const SizedBox(width: 8),
+                        BadgeWidget(
+                          text: movie.ageRating,
+                          isOrange: false,
+                          isOutline: true,
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 6),
                   Row(
                     children: [
                       const Icon(Icons.movie_outlined, color: AppColors.textSecondary, size: 12),
                       const SizedBox(width: 4),
-                      Text(
-                        movie.genre.isNotEmpty ? '${movie.genre}  |  ${movie.type}' : movie.type,
-                        style: const TextStyle(
-                          color: AppColors.textSecondary,
-                          fontSize: 11,
+                      Expanded(
+                        child: Text(
+                          movie.genre.isNotEmpty ? '${movie.genre}  |  ${movie.type}' : movie.type,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            color: AppColors.textSecondary,
+                            fontSize: 11,
+                          ),
                         ),
                       ),
                     ],

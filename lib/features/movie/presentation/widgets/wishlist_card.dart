@@ -16,10 +16,14 @@ class WishlistCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final displayGenre = movie.genre.isNotEmpty
+        ? movie.genre
+        : (movie.year > 0 ? '${movie.year}' : movie.type);
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.only(bottom: 14),
+        margin: const EdgeInsets.only(bottom: 12),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: AppColors.card,
@@ -35,42 +39,45 @@ class WishlistCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   child: Image.network(
                     movie.backdropUrl.isNotEmpty ? movie.backdropUrl : movie.posterUrl,
-                    width: 110,
-                    height: 75,
+                    width: 96,
+                    height: 68,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) => Container(
-                      width: 110,
-                      height: 75,
+                      width: 96,
+                      height: 68,
                       color: AppColors.cardLight,
-                      child: const Icon(Icons.movie_rounded, color: AppColors.textSecondary, size: 28),
+                      child: const Icon(Icons.movie_rounded, color: AppColors.textSecondary, size: 26),
                     ),
                   ),
                 ),
                 Container(
-                  width: 32,
-                  height: 32,
+                  width: 30,
+                  height: 30,
                   decoration: BoxDecoration(
                     color: Colors.black.withValues(alpha: 0.55),
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(Icons.play_arrow_rounded, color: Colors.white, size: 20),
+                  child: const Icon(Icons.play_arrow_rounded, color: Colors.white, size: 18),
                 ),
               ],
             ),
-            const SizedBox(width: 14),
+            const SizedBox(width: 12),
             // Movie info
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    movie.genre,
+                    displayGenre,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       color: AppColors.textSecondary,
                       fontSize: 11,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 3),
                   Text(
                     movie.title,
                     maxLines: 1,
@@ -81,39 +88,47 @@ class WishlistCard extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 6),
-                  Row(
-                    children: [
-                      Text(
-                        '${movie.type}  ',
-                        style: const TextStyle(
-                          color: AppColors.textSecondary,
-                          fontSize: 11,
+                  const SizedBox(height: 4),
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.centerLeft,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (movie.type.isNotEmpty) ...[
+                          Text(
+                            movie.type,
+                            style: const TextStyle(
+                              color: AppColors.textSecondary,
+                              fontSize: 11,
+                            ),
+                          ),
+                          const SizedBox(width: 6),
+                        ],
+                        const Icon(Icons.star_rounded, color: AppColors.primary, size: 13),
+                        const SizedBox(width: 2),
+                        Text(
+                          movie.rating.toStringAsFixed(1),
+                          style: const TextStyle(
+                            color: AppColors.primary,
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      const Icon(Icons.star_rounded, color: AppColors.primary, size: 13),
-                      const SizedBox(width: 2),
-                      Text(
-                        movie.rating.toStringAsFixed(1),
-                        style: const TextStyle(
-                          color: AppColors.primary,
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
+            const SizedBox(width: 6),
             // Interactive Red Heart Icon button
             IconButton(
               icon: const Icon(Icons.favorite_rounded, color: AppColors.heartActive, size: 22),
               onPressed: onRemove,
-              padding: EdgeInsets.zero,
-              constraints: const BoxConstraints(),
+              padding: const EdgeInsets.all(4),
+              constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
             ),
-            const SizedBox(width: 4),
           ],
         ),
       ),

@@ -150,30 +150,49 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                   ),
                   const SizedBox(height: 20),
                   // Meta Row (Year, Runtime, Genre)
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.calendar_today_rounded, color: AppColors.textSecondary, size: 13),
-                      const SizedBox(width: 4),
-                      Text(
-                        _currentMovie.year > 0 ? '${_currentMovie.year}' : 'N/A',
-                        style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
-                      ),
-                      const SizedBox(width: 12),
-                      const Icon(Icons.access_time_rounded, color: AppColors.textSecondary, size: 13),
-                      const SizedBox(width: 4),
-                      Text(
-                        _currentMovie.duration,
-                        style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
-                      ),
-                      const SizedBox(width: 12),
-                      const Icon(Icons.movie_outlined, color: AppColors.textSecondary, size: 13),
-                      const SizedBox(width: 4),
-                      Text(
-                        _currentMovie.genre.isNotEmpty ? _currentMovie.genre : 'Movie',
-                        style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Wrap(
+                      alignment: WrapAlignment.center,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      spacing: 12,
+                      runSpacing: 6,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(Icons.calendar_today_rounded, color: AppColors.textSecondary, size: 13),
+                            const SizedBox(width: 4),
+                            Text(
+                              _currentMovie.year > 0 ? '${_currentMovie.year}' : 'N/A',
+                              style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(Icons.access_time_rounded, color: AppColors.textSecondary, size: 13),
+                            const SizedBox(width: 4),
+                            Text(
+                              _currentMovie.duration,
+                              style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(Icons.movie_outlined, color: AppColors.textSecondary, size: 13),
+                            const SizedBox(width: 4),
+                            Text(
+                              _currentMovie.genre.isNotEmpty ? _currentMovie.genre : 'Movie',
+                              style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 10),
                   // Star Rating Row
@@ -195,7 +214,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                   const SizedBox(height: 20),
                   // Action Buttons Row (Orange Play pill + Download + Share)
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

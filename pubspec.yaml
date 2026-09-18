@@ -16,6 +16,8 @@ dependencies:
   firebase_core: ^4.14.0
   firebase_auth: ^6.6.1
   flutter_bloc: ^9.0.0
+  flutter_markdown: ^0.7.4
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_test:
@@ -23,12 +25,16 @@ dev_dependencies:
   flutter_native_splash: ^2.4.7
   flutter_lints: ^6.0.0
 
+dependency_overrides:
+  path_provider_foundation: 2.4.0
+
 flutter:
   uses-material-design: true
 
   assets:
     - assets/images/
     - api.env
+    - .env
 
 flutter_native_splash:
   color: "#1F1D2B"

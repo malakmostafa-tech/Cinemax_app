@@ -43,4 +43,16 @@ class AppColors {
   static const Color whatsapp = Color(0xFF25D366);
   static const Color telegram = Color(0xFF0088CC);
   static const Color messenger = Color(0xFF0084FF);
+
+  // Legacy Aliases for Complete Backwards Compatibility
+  static const Color backgroundColor = background;
+  static const Color primaryColor = primary;
+  static const Color secondaryColor = secondary;
+  static const Color primaryTextColor = textPrimary;
+  static const Color secondaryTextColor = textSecondary;
+  static const Color tertiaryTextColor = textTertiary;
+  static const Color errorColor = error;
+  static const Color boxColor = surface;
+  static const Color headerButtonColor = cardLight;
+  static const Color whiteGreyColor = Color(0xFFE2E8F0);
 }

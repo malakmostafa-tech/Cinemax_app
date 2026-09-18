@@ -92,7 +92,7 @@ class WishlistScreen extends StatelessWidget {
   Widget _buildPopulatedState(BuildContext context, List<Movie> movies) {
     return ListView.builder(
       physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       itemCount: movies.length,
       itemBuilder: (context, index) {
         final movie = movies[index];

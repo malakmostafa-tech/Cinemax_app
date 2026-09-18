@@ -11,12 +11,14 @@ class HomeScreen extends StatefulWidget {
   final VoidCallback onNavigateToSearch;
   final VoidCallback onNavigateToMostPopular;
   final Function(Movie) onSelectMovie;
+  final VoidCallback? onNavigateToAi;
 
   const HomeScreen({
     super.key,
     required this.onNavigateToSearch,
     required this.onNavigateToMostPopular,
     required this.onSelectMovie,
+    this.onNavigateToAi,
   });
 
   @override
@@ -110,6 +112,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                       ),
+                      // AI Assistant Icon Button
+                      if (widget.onNavigateToAi != null)
+                        IconButton(
+                          tooltip: 'Cinemax AI',
+                          icon: const Icon(Icons.auto_awesome, color: AppColors.secondary, size: 24),
+                          onPressed: widget.onNavigateToAi,
+                        ),
                       // Wishlist / Heart Icon Button
                       IconButton(
                         icon: const Icon(Icons.favorite_rounded, color: AppColors.heartActive, size: 24),

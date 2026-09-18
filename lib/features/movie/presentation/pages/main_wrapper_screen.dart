@@ -14,7 +14,9 @@ import 'package:cinemax_app/features/movie/presentation/widgets/custom_bottom_na
 
 import 'package:cinemax_app/features/profile/presentation/pages/profile_stack.dart';
 
-enum _ActiveSubScreen { none, detail, mostPopular }
+import 'package:cinemax_app/features/ai/presentation/views/gemini_chat_screen.dart';
+
+enum _ActiveSubScreen { none, detail, mostPopular, ai }
 
 class MainWrapperScreen extends StatefulWidget {
   const MainWrapperScreen({super.key});
@@ -40,6 +42,10 @@ class _MainWrapperScreenState extends State<MainWrapperScreen> {
     setState(() => _subScreen = _ActiveSubScreen.mostPopular);
   }
 
+  void _navigateToAi() {
+    setState(() => _subScreen = _ActiveSubScreen.ai);
+  }
+
   void _popSubScreen() {
     setState(() {
       _subScreen = _ActiveSubScreen.none;
@@ -53,6 +59,7 @@ class _MainWrapperScreenState extends State<MainWrapperScreen> {
       onNavigateToSearch: () => context.read<MovieCubit>().setActiveBottomTab(1),
       onNavigateToMostPopular: _navigateToMostPopular,
       onSelectMovie: _navigateToDetail,
+      onNavigateToAi: _navigateToAi,
     );
   }
 
@@ -77,6 +84,12 @@ class _MainWrapperScreenState extends State<MainWrapperScreen> {
           return MostPopularScreen(
             onBack: _popSubScreen,
             onSelectMovie: _navigateToDetail,
+          );
+        }
+
+        if (_subScreen == _ActiveSubScreen.ai) {
+          return GeminiChatScreen(
+            onBack: _popSubScreen,
           );
         }
 

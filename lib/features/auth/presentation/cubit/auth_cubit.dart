@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:cinemax_app/features/auth/data/data_sources/auth_remote_data_source.dart';
+import 'package:cinemax_app/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:cinemax_app/features/auth/domain/use_cases/get_current_user_use_case.dart';
 import 'package:cinemax_app/features/auth/domain/use_cases/login_use_case.dart';
 import 'package:cinemax_app/features/auth/domain/use_cases/logout_use_case.dart';
@@ -27,6 +29,19 @@ class AuthCubit extends Cubit<AuthState> {
     required this.getCurrentUserUseCase,
   }) : super(const AuthInitial()) {
     _listenToAuthState();
+  }
+
+  factory AuthCubit.create() {
+    final remoteDataSource = AuthRemoteDataSourceImpl();
+    final repository = AuthRepositoryImpl(remoteDataSource: remoteDataSource);
+    return AuthCubit(
+      loginUseCase: LoginUseCase(repository),
+      signUpUseCase: SignUpUseCase(repository),
+      logoutUseCase: LogoutUseCase(repository),
+      resetPasswordUseCase: ResetPasswordUseCase(repository),
+      updatePasswordUseCase: UpdatePasswordUseCase(repository),
+      getCurrentUserUseCase: GetCurrentUserUseCase(repository),
+    );
   }
 
   void _listenToAuthState() {
